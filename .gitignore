@@ -4,3 +4,7 @@ main.cpp
 *.exe
 .idea
 .DS_Store
+.vscode
+.cph
+bin
+*.bin
