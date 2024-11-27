@@ -8,3 +8,8 @@ main.cpp
 .cph
 bin
 *.bin
+*.dSYM
+/P1242
+/P1434
+/P2512
+/P1141
