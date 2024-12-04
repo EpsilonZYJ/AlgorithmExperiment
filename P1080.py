@@ -1,3 +1,4 @@
+# DONE
 if __name__ == '__main__':
     n = int(input())
     left0, right0 = map(int, input().split())
