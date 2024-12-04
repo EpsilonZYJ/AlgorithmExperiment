@@ -1,4 +1,7 @@
+// DONE
 #include <iostream>
+#include <climits>
+#include <cstring>
 using namespace std;
 
 struct node {
@@ -7,7 +10,7 @@ struct node {
     int last_y;
 };
 
-const int MAX = 8;
+const int MAX = 105;
 int Value[MAX][MAX];
 int Answer[MAX];
 node dp[MAX][MAX];
@@ -23,19 +26,20 @@ int main(){
         for(int j = 1; j <= V; j ++)
             cin >> Value[i][j];
 
-    memset(dp, INT_MIN, sizeof(dp));
-    dp[1][1].data = Value[1][1];
-    for(int i = 0; i <= F; i ++)
+    node* start = &dp[0][0];
+    for (int i = 0; i < sizeof(dp)/sizeof(dp[0][0]); i++)
+        (start+i)->data = INT_MIN;
+    for(int i = 0; i <= V; i ++)
         dp[0][i].data = 0;
     for(int i = 1; i <= F; i ++){
-        for(int j = 1; j <= V; j ++){
+        for(int j = i; j <= V; j ++){
             if(dp[i-1][j-1].data+Value[i][j] > dp[i][j-1].data){
                 dp[i][j].data = dp[i-1][j-1].data+Value[i][j];
                 dp[i][j].last_x = i-1;
                 dp[i][j].last_y = j-1;
             }
             else{
-                dp[i][j] = dp[i][j-1];
+                dp[i][j].data = dp[i][j-1].data;
                 dp[i][j].last_x = i;
                 dp[i][j].last_y = j-1;
             }
@@ -44,22 +48,20 @@ int main(){
     cout << dp[F][V].data << endl;
     int i = F;
     pair<int, int> last;
-    last.first = dp[F][V].last_x;
-    last.second = dp[F][V].last_y;
+    last.first = F;
+    last.second = V;
     while (i > 0) {
-        if (last.first == i) {
-            last.second --;
+        while (dp[last.first][last.second].last_x == i) {
+            // last.second --;
             last.first = dp[i][last.second].last_x;
             last.second = dp[i][last.second].last_y;
-        }else {
-            // Answer[i] = dp[last.first][last.second].data;
-            Answer[i] = last.second+1;
-            int x_tmp = last.first;
-            int y_tmp = last.second;
-            last.first = dp[x_tmp][y_tmp].last_x;
-            last.second = dp[x_tmp][y_tmp].last_y;
-            i --;
         }
+        Answer[last.first] = last.second;
+        int x_tmp = last.first;
+        int y_tmp = last.second;
+        last.first = dp[x_tmp][y_tmp].last_x;
+        last.second = dp[x_tmp][y_tmp].last_y;
+        i --;
 
     }
     for (int i = 1; i <= F; i ++)
