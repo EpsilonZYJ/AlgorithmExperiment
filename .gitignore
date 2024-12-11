@@ -2,9 +2,6 @@ cmake-build-debug
 CMakeLists.txt
 main.cpp
 *.exe
-<<<<<<< HEAD
-.idea
-=======
 .idea
 .DS_Store
 .vscode
@@ -18,4 +15,3 @@ bin
 /P1141
 /P1854
 /P1090
->>>>>>> 0daa0a0b18fc1f647e7d977acba252753c888388
