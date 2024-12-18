@@ -1,3 +1,4 @@
+// DONE
 #include <iostream>
 #include <queue>
 #include <cstring>
@@ -36,10 +37,8 @@ int main(){
             regionMap[X_i-1][Y_i] = min(regionMap[X_i-1][Y_i], T_i);
         if(Y_i-1 >= 0)
             regionMap[X_i][Y_i-1] = min(regionMap[X_i][Y_i-1], T_i);
-//        if(X_i+1 <= 300)
-            regionMap[X_i+1][Y_i] = min(regionMap[X_i+1][Y_i], T_i);
-//        if(Y_i+1 <= 300)
-            regionMap[X_i][Y_i+1] = min(regionMap[X_i][Y_i+1], T_i);
+        regionMap[X_i+1][Y_i] = min(regionMap[X_i+1][Y_i], T_i);
+        regionMap[X_i][Y_i+1] = min(regionMap[X_i][Y_i+1], T_i);
     }
     queue<pair<pair<int, int>, int>> q;
     q.push(make_pair(make_pair(0, 0), 0));
@@ -48,20 +47,6 @@ int main(){
         pair<pair<int, int>, int> cur_pos_time = q.front();
         pair<int, int> cur_pos = cur_pos_time.first;
         q.pop();
-//        for(int i = 0; i < 4; i ++){
-//            pair<int, int> next_pos = cur_pos+direction[i];
-//            if(!positionValid(next_pos))
-//                continue;
-//            if(regionMap[next_pos.first][next_pos.second] == INT_MAX){
-//                cout << cur_pos_time.second+1;
-//                return 0;
-//            }
-//            else if(regionMap[next_pos.first][next_pos.second] <= cur_pos_time.second+1)
-//                continue;
-//            else if(memory[next_pos.first][next_pos.second] == INT_MAX){
-//                q.push(make_pair(next_pos, cur_pos_time.second+1));
-//            }
-//        }
         for(int i = 0; i < 4; i ++){
             pair<int, int> next_pos = cur_pos+direction[i];
             if(positionValid(next_pos) && memory[next_pos.first][next_pos.second]==0 && regionMap[next_pos.first][next_pos.second] > cur_pos_time.second+1){
