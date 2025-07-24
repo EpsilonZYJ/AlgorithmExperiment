@@ -5,7 +5,7 @@
 using namespace std;
 using ull = unsigned long long;
 
-int satisfy(vector<ull>& rock_pos, ull now_step, ull limited_rocks, ull last){
+bool satisfy(vector<ull>& rock_pos, ull now_step, ull limited_rocks, ull last){
     ull cnt = 0;
     ull now_pos = 0;
     ull next_pos = 1;

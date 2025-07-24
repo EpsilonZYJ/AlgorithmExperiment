@@ -14,7 +14,7 @@ const int MAX = 105;
 int Value[MAX][MAX];
 int Answer[MAX];
 node dp[MAX][MAX];
-// dp[i][j]: 第i束花放在第j个花瓶中的最大值
+// dp[i][j]: 前i束花在前j个花瓶中的最大值
 // dp[i][j] = max(dp[i-1][j-1]+Value[i][j], dp[i][j-1])
 
 int main(){
